@@ -1,0 +1,27 @@
+package d12
+
+func lemonadeChange(bills []int) bool {
+
+	five, ten := 0, 0
+	for _, bill := range bills {
+		if bill == 5 {
+			five++
+		} else if bill == 10 && five > 0 {
+			five--
+			ten++
+		} else if bill == 15 {
+			if ten > 0 && five > 0 {
+				five--
+				ten--
+			} else if five > 2 {
+				five -= 3
+			} else {
+				return false
+			}
+		} else {
+			return false
+		}
+
+	}
+	return true
+}

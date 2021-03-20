@@ -1,10 +1,9 @@
-package main
+package m3
 
-import "strconv"
+import (
+	"strconv"
+)
 
-func main() {
-	evalRPN([]string{"2", "1", "+", "3", "*"})
-}
 func evalRPN(tokens []string) int {
 	stack := make([]int, 0)
 	for _, token := range tokens {

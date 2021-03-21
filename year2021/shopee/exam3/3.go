@@ -1,14 +1,6 @@
-package main
+package exam3
 
-import (
-	"fmt"
-	"sort"
-)
-
-func main() {
-	fmt.Println(1<<31 - 1)
-	nextGreaterElement(12)
-}
+import "sort"
 
 func nextGreaterElement(n int) int {
 	arr := make([]int, 32)

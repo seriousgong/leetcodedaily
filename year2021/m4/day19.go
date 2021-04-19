@@ -12,7 +12,7 @@ func removeElement(nums []int, val int) int {
 		}
 	}
 	if nums[i] == val {
-		return i - 1
+		return i
 	}
-	return i
+	return i + 1
 }

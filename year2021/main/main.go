@@ -1,30 +1,28 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	fmt.Println(findMin([]int{1, 2, 3, 4}))
-	fmt.Println(findMin([]int{4, 5, 1, 2, 3}))
-	fmt.Println(findMin([]int{3, 1, 2}))
-	fmt.Println(findMin([]int{3, 4, 5, 1, 2}))
-	fmt.Println(findMin([]int{4, 5, 6, 7, 0, 1, 2}))
-	fmt.Println(findMin([]int{2, 1}))
-	fmt.Println(findMin([]int{3, 2, 1}))
-	fmt.Println(findMin([]int{1, 2, 3}))
-
+	fmt.Println(numDecodings("12"))
+	fmt.Println(numDecodings("226"))
 }
-func findMin(nums []int) int {
-	// 因为原先是个升序数组，所有无论怎么旋转，如果[0]元素<[last]元素，那么 该数组即原数组
-	i, j := 0, len(nums)-1
-	for i < j {
-		mid := (i + j) / 2
-		if nums[mid] < nums[len(nums)-1] {
-			j = mid
-		} else {
-			i = mid + 1
+func numDecodings(s string) int {
+	if s[0] == '0' {
+		return 0
+	}
+	dp := make([]int, len(s))
+	dp[0] = 1
+	for i := 1; i < len(s); i++ {
+		if s[i] != '0' {
+			dp[i] += dp[i-1]
+		}
+		if (s[i-1] == '2' && s[i] <= '6') || s[i-1] == '1' {
+			if i == 1 {
+				dp[i] += 1
+			} else {
+				dp[i] += dp[i-2]
+			}
 		}
 	}
-	return nums[i]
+	return dp[len(s)-1]
 }

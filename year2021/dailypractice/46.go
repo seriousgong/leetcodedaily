@@ -26,3 +26,28 @@ func permute(nums []int) [][]int {
 	dfs(0, []int{})
 	return res
 }
+func permuteq(nums []int) [][]int {
+	res := make([][]int, 0)
+	bools := make([]bool, len(nums))
+	var dfs func(index int, tmp []int)
+	dfs = func(index int, tmp []int) {
+		if len(tmp) == len(nums) {
+			arr := make([]int, len(nums))
+			copy(arr, tmp)
+			res = append(res, arr)
+			return
+		}
+		for i := 0; i < len(nums); i++ {
+			if bools[i] {
+				continue
+			}
+			bools[i] = true
+			tmp = append(tmp, nums[i])
+			dfs(i+1, tmp)
+			bools[i] = false
+			tmp = tmp[:len(tmp)-1]
+		}
+	}
+	dfs(0, []int{})
+	return res
+}

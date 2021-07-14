@@ -1,6 +1,5 @@
 package m7
 
-import "fmt"
 
 func numSubarraysWithSum(nums []int, goal int) int {
 	res, sum1, sum2, l1, l2 := 0, 0, 0, 0, 0
